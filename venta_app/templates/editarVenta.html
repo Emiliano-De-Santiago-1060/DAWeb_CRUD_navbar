@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block cuerpo %}
+<div class="row">
+    <div class="col-md-4 offset-md-4">
+    <h2> Editar</h2>
+    <!--Aqui codigo de tarjeta-->
+    <div class="card">
+        <div class="card-body">
+            <!-- Primer formulario (sin botón de enviar) -->
+            <form action="/editarVenta/" method="POST">{% csrf_token %}
+                <div class="form-group p-2">
+                    <input type="text" id="txtcodigo" name="txtcodigo" class="form-control" value="{{misventas.codigo}}" minleght="1" maxlength="100" required>
+                </div>
+                <div class="form-group p-2">
+                    <input type="text" id="txtcodigoper" name="txtcodigoper" class="form-control" value="{{misventas.codigoper}}" minleght="1" maxlength="100" required>
+                </div>
+                <div class="form-group p-2">
+                    <input type="text" id="txtcodigopro" name="txtcodigopro" class="form-control" value="{{misventas.codigopro}}" minleght="1" maxlength="100" required>
+                </div>
+                <div class="form-group p-2">
+                    <input type="text" id="txtcodigocli" name="txtcodigocli" class="form-control" value="{{misventas.codigocli}}" minleght="1" maxlength="100" required>
+                </div>
+                <div class="form-group p-2">
+                    <input type="date" id="datefecha" name="datefecha" class="form-control" value="{{misventas.fecha|date:'Y-m-d'}}" maxlength="100" required>
+                </div>
+                <div class="form-group p-2">
+                    <input type="number" id="numcantidad" name="numcantidad" class="form-control" value="{{misventas.cantidad}}" minleght="1" maxlength="100" required>
+                </div>
+                <div class="form-group p-2">
+                    <input type="number" id="numtotal" name="numtotal" class="form-control" value="{{misventas.total}}" maxlength="100000" required>
+                </div>
+                    <button type="submit" class="btn btn-danger">Guardar</button>
+                    </div>
+                </form>
+            </form>
+        </div>
+    </div>
+</div>
+    <!--Aqui codigo de tarjeta-->
+    </div>
+
+</div>
+{% endblock %}

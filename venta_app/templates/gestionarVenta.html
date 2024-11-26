@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+
+{% block cuerpo %}
+{% load static %}
+<div class="row"> <!-- Fila principal -->
+    <!-- Columna izquierda -->
+    <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4">
+        <h1> Registrar Venta </h1> <!-- Título de la columna izquierda -->
+        <div class="card">
+            <div class="card-body">
+                <form action="registrarVenta/" method="POST">
+                    {% csrf_token %}
+                    <div class="form-group p-2">
+                        <input type="text" id="txtcodigo" name="txtcodigo" class="form-control" placeholder="Código de la venta" minlength="1" maxlength="100" required>
+                    </div>
+                    <div class="form-group p-2">
+                        <input type="text" id="txtcodigoper" name="txtcodigoper" class="form-control" placeholder="ID Personal" minlength="1" maxlength="100" required>
+                    </div>
+                    <div class="form-group p-2">
+                        <input type="text" id="txtcodigopro" name="txtcodigopro" class="form-control" placeholder="ID Producto" minlength="1" maxlength="100" required>
+                    </div>
+                    <div class="form-group p-2">
+                        <input type="text" id="txtcodigocli" name="txtcodigocli" class="form-control" placeholder="ID Cliente" minlength="1" maxlength="100" required>
+                    </div>
+                    <div class="form-group p-2">
+                        <input type="date" id="datefecha" name="datefecha" class="form-control" placeholder="Fecha de la venta" required>
+                    </div>
+                    <div class="form-group p-2">
+                        <input type="number" id="numcantidad" name="numcantidad" class="form-control" placeholder="Cantidad" min="1" required>
+                    </div>
+                    <div class="form-group p-2">
+                        <input type="number" id="numtotal" name="numtotal" class="form-control" placeholder="Total" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Guardar Venta</button>
+                </form>
+            </div>
+        </div>
+    </div> <!-- Fin columna izquierda -->
+
+    <!-- Columna derecha -->
+    <div class="col-sm-12 col-md-8 col-lg-8 col-xl-8">
+        <h1> Listado de Ventas </h1>
+        <center>    <img class="w-50" src="{% static 'img/ventas.jpg' %}" alt="dss" width="400" height="400">
+
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Código</th>
+                        <th scope="col">ID Personal</th>
+                        <th scope="col">ID Producto</th>
+                        <th scope="col">ID Cliente</th>
+                        <th scope="col">Fecha</th>
+                        <th scope="col">Cantidad</th>
+                        <th scope="col">Total</th>
+                        <th scope="col">Opciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for v in misventas %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{ v.codigo }}</td>
+                            <td>{{ v.codigoper }}</td>
+                            <td>{{ v.codigopro }}</td>
+                            <td>{{ v.codigocli }}</td>
+                            <td>{{ v.fecha }}</td>
+                            <td>{{ v.cantidad }}</td>
+                            <td>{{ v.total }}</td>
+                            <td>
+                                <a href="seleccionarVenta/{{ v.codigo }}" class="btn btn-warning btn-sm">Editar</a>
+                                <a href="borrarVenta/{{ v.codigo }}" class="btn btn-danger btn-sm">Borrar</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div> <!-- Fin columna derecha -->
+</div> <!-- Fin fila principal -->
+
+{% endblock %}
