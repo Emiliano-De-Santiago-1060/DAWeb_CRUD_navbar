@@ -1,0 +1,10 @@
+from django.urls import path
+from cliente_app import views
+
+urlpatterns = [
+    path("cliente", views.inicio_vistaCliente, name="cliente"),
+    path("registrarCliente/", views.registrarCliente, name="registrarCliente"),
+    path("borrarCliente/<codigo>", views.borrarCliente, name="borrarCliente"),
+    path("seleccionarCliente/<codigo>", views.seleccionarCliente, name="seleccionarCliente"),
+    path("editarCliente/", views.editarCliente, name="editarCliente")
+]

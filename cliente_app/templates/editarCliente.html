@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block cuerpo %}
+<div class="row">
+    <div class="col-md-4 offset-md-4">
+    <h2> Editar </h2>
+    <!--Aqui codigo de tarjeta-->
+    <div class="card">
+        <div class="card-body">
+            <!-- Primer formulario (sin botón de enviar) -->
+            <form action="/editarCliente/" method="POST">{% csrf_token %}
+                <div class="form-group p-2">
+                    <input type="text" id="txtcodigo" name="txtcodigo" class="form-control" value="{{misclientes.codigo}}" minleght="1" maxlength="100" required>
+                </div>
+                <div class="form-group p-2">
+                    <input type="text" id="txtnombre" name="txtnombre" class="form-control" value="{{misclientes.nombre}}" maxlength="100" required>
+                </div>
+                <div class="form-group p-2">
+                    <input type="text" id="txtdireccion" name="txtdireccion" class="form-control" value="{{misclientes.direccion}}" maxlength="100" required>
+                </div>
+                <div class="form-group p-2">
+                    <input type="text" id="txttelefono" name="txttelefono" class="form-control" value="{{misclientes.telefono}}" maxlength="100" required>
+                </div>
+                <div class="form-group p-2">
+                    <input type="date" id="datefecha" name="datefecha" class="form-control" value="{{misclientes.fecha|date:'Y-m-d'}}" maxlength="100" required>
+                </div>
+                <div class="form-group p-2">
+                    <input type="correo" id="txtgiro" name="txtcorreo" class="form-control" value="{{misclientes.correo}}" maxlength="100" required>
+                </div>
+                <button type="submit" class="btn btn-danger">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+    <!--Aqui codigo de tarjeta-->
+    </div>
+
+</div>
+{% endblock %}
